@@ -1,6 +1,12 @@
 require 'readline'
 require 'date'
 
+# The earliest date for which there is consistent data
+DATA_START_DATE = '2006-09-20'
+
+MAX_DAYS = 7
+
+
 # Ask the user (via the command line) to provide valid start and end date
 
 def query_user_for_date_range
@@ -36,4 +42,19 @@ def query_user_for_date
 
   end
   return date
+end
+
+# Test if a single date is valid
+def date_valid?(date)
+  valid_dates = Date.parse(DATA_START_DATE)..Date.today
+  if valid_dates.cover?(date)
+    return true
+  else
+    puts "nDate must be after #{DATA_START_DATE} and before today."
+    return false
+  end
+end
+
+# Test if a range of dates is valid
+def date_range_valid?(start_date, end_date)
 end
