@@ -13,12 +13,16 @@ def query_user_for_date_range
   start_date = nil
   end_date = nil
 
-  puts "\nFirst, we need a start date."
-  start_date = query_user_for_date
+  until start_date && end_date
+    puts "\nFirst, we need a start date."
+    start_date = query_user_for_date
   
-  puts "\nNext, we need an end date."
-  end_date = query_user_for_date
-
+    puts "\nNext, we need an end date."
+    end_date = query_user_for_date
+    if !date_range_valid?(start_date, end_date)
+      puts "Let's try again."
+      start_date = end_date = nil
+    end
   return start_date, end_date
 end
 
@@ -39,6 +43,7 @@ def query_user_for_date
     rescue
       puts "\nInvalid date format."
     end
+    date = nil unless date_valid?(date) #unless -> if not
 
   end
   return date
@@ -57,4 +62,12 @@ end
 
 # Test if a range of dates is valid
 def date_range_valid?(start_date, end_date)
+  if start_date > end_date
+    puts "\nStart date must be before end date."
+    return false
+  elseif start_date + MAX_DAYS < end_date
+    puts "\nNo more than #{MAX_DAYS} days. Be kind to remote server"
+    return false
+  end
+  return true
 end
