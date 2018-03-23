@@ -77,3 +77,42 @@ def date_range_valid?(start_date, end_date)
   end
   return true
 end
+
+### Retrieve remote data ###
+
+def get_readings_from_remote_for_dates(type, start_date, end_date)
+  readings = []
+  start_date.upto(end_date) do |date|
+    readings += get_readings_from_remote(type, date)
+  end
+  return readings
+end
+end
+
+def get_readings_from_remote(type, date)
+  raise "Invalid Reading Type" unless
+READING_TYPES.keys.include?(type)
+
+  # read the remote file, split readings into an array
+  base_url = "https://lpo.dt.navy.mil/data/DM"
+  url = "#{base_url}/#{date.year}/#{date.strtime("%Y_%m_%d")}/#{type}"
+  puts "Retrieving: #{url}"
+  data = open(url).readlines
+
+  # Extract the reading from each line
+  # "2014_01_01 00:02:57  7.6\r\n" becomes 7.6
+  readings = data.map do |line|
+    line_items = line.chomp.split(" ")
+    reading = line_items[2].to_f
+  end
+  return readings
+end
+
+  
+
+
+end
+
+
+
+
