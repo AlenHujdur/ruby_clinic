@@ -1,11 +1,17 @@
 require 'readline'
 require 'date'
+require 'open-uri'
 
 # The earliest date for which there is consistent data
 DATA_START_DATE = '2006-09-20'
 
 MAX_DAYS = 7
 
+READING_TYPES = {
+  "Wind_Speed" => "Wind Speed"
+  "Air_Temp" => "Air Temp",
+  "Barometric_Press" => "Pressure"
+}
 
 # Ask the user (via the command line) to provide valid start and end date
 
