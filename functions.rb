@@ -107,7 +107,6 @@ READING_TYPES.keys.include?(type)
   end
   return readings
 end
-end
 
 
 
