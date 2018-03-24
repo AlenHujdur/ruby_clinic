@@ -86,7 +86,7 @@ def get_readings_from_remote_for_dates(type, start_date, end_date)
     readings += get_readings_from_remote(type, date)
   end
   return readings
-end
+  end
 end
 
 def get_readings_from_remote(type, date)
@@ -107,10 +107,6 @@ READING_TYPES.keys.include?(type)
   end
   return readings
 end
-
-  
-
-
 end
 
 
