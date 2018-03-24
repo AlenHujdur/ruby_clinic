@@ -29,6 +29,7 @@ def query_user_for_date_range
       puts "Let's try again."
       start_date = end_date = nil
     end
+  end
   return start_date, end_date
 end
 
