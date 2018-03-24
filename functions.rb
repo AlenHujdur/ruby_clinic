@@ -8,7 +8,7 @@ DATA_START_DATE = '2006-09-20'
 MAX_DAYS = 7
 
 READING_TYPES = {
-  "Wind_Speed" => "Wind Speed"
+  "Wind_Speed" => "Wind Speed",
   "Air_Temp" => "Air Temp",
   "Barometric_Press" => "Pressure"
 }
